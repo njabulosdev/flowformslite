@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 96%; /* Very light gray for main content background */
+    --foreground: 0 0% 15%; /* Dark gray for main text */
+
+    --card: 0 0% 100%; /* White for cards */
+    --card-foreground: 0 0% 15%; /* Dark gray text on cards */
+
+    --popover: 0 0% 100%; /* White for popovers */
+    --popover-foreground: 0 0% 15%; /* Dark gray text on popovers */
+
+    --primary: 130 60% 40%; /* Vibrant Green */
+    --primary-foreground: 0 0% 100%; /* White text on primary green */
+
+    --secondary: 0 0% 92%; /* Lighter gray for secondary elements */
+    --secondary-foreground: 0 0% 25%; /* Darker gray text on secondary */
+
+    --muted: 0 0% 88%; /* Muted gray */
+    --muted-foreground: 0 0% 40%; /* Muted text color */
+
+    --accent: 130 60% 40%; /* Vibrant Green for general accents */
+    --accent-foreground: 0 0% 100%; /* White text on accent green */
+
+    --destructive: 0 72% 51%; /* Standard red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive red */
+
+    --border: 0 0% 85%; /* Light gray border */
+    --input: 0 0% 100%; /* White input background */
+    --ring: 130 60% 45%; /* Slightly lighter green for focus rings */
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors - always dark as per image */
+    --sidebar-background: 0 0% 20%; /* Dark Gray (#333333) */
+    --sidebar-foreground: 0 0% 85%; /* Light Gray (#D9D9D9) text for sidebar */
+    
+    /* Used for active/hovered menu item background and text */
+    --sidebar-accent: 0 0% 28%; /* Lighter Dark Gray (#474747) for active/hovered item background */
+    --sidebar-accent-foreground: 130 60% 40%; /* Vibrant Green for active/hovered item text */
+
+    /* For other primary elements within sidebar if needed, e.g., logo */
+    --sidebar-primary: 130 60% 40%; /* Vibrant Green */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    
+    --sidebar-border: 0 0% 25%; /* Border color within sidebar (#404040) */
+    --sidebar-ring: 130 60% 45%; /* Green for focus ring in sidebar */
+
+    --chart-1: 130 60% 40%; /* Primary Green */
+    --chart-2: 210 60% 55%; /* Blue */
+    --chart-3: 35 85% 60%;  /* Orange */
+    --chart-4: 280 50% 60%; /* Purple */
+    --chart-5: 0 0% 50%;    /* Neutral Gray */
+  }
+
+  .dark {
+    --background: 0 0% 12%; /* Very dark gray for main content background */
+    --foreground: 0 0% 90%; /* Light gray text */
+
+    --card: 0 0% 18%; /* Darker gray for cards */
+    --card-foreground: 0 0% 90%; /* Light gray text on cards */
+
+    --popover: 0 0% 15%; /* Dark gray for popovers */
+    --popover-foreground: 0 0% 90%; /* Light gray text on popovers */
+
+    --primary: 130 55% 50%; /* Brighter Green for dark mode */
+    --primary-foreground: 0 0% 10%; /* Very dark text on primary green */
+
+    --secondary: 0 0% 25%; /* Dark gray for secondary elements */
+    --secondary-foreground: 0 0% 90%; /* Light gray text on secondary */
+
+    --muted: 0 0% 22%; /* Dark muted gray */
+    --muted-foreground: 0 0% 65%; /* Muted light gray text */
+
+    --accent: 130 55% 50%; /* Brighter Green for accents in dark mode */
+    --accent-foreground: 0 0% 10%; /* Very dark text on accent green */
+
+    --destructive: 0 63% 45%; /* Standard red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive red */
+
+    --border: 0 0% 30%; /* Darker gray border */
+    --input: 0 0% 22%; /* Dark gray input background */
+    --ring: 130 55% 55%; /* Brighter green for focus rings */
+
+    /* Sidebar specific colors for dark mode - kept same as light mode for consistent dark sidebar */
+    --sidebar-background: 0 0% 20%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-accent: 0 0% 28%; 
+    --sidebar-accent-foreground: 130 60% 40%; 
+    --sidebar-primary: 130 60% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 25%;
+    --sidebar-ring: 130 60% 45%;
+
+    --chart-1: 130 55% 50%; /* Brighter Green */
+    --chart-2: 210 55% 65%; /* Lighter Blue */
+    --chart-3: 35 80% 70%;  /* Lighter Orange */
+    --chart-4: 280 45% 70%; /* Lighter Purple */
+    --chart-5: 0 0% 60%;    /* Lighter Neutral Gray */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar for sidebar content */
+/* Targeting the specific div that handles scrolling within the sidebar component */
+[data-sidebar="sidebar"] [data-sidebar="content"]::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+[data-sidebar="sidebar"] [data-sidebar="content"]::-webkit-scrollbar-track {
+  background: hsl(var(--sidebar-background));
+  border-radius: 10px;
+}
+[data-sidebar="sidebar"] [data-sidebar="content"]::-webkit-scrollbar-thumb {
+  background: hsl(var(--sidebar-accent));
+  border-radius: 10px;
+  border: 2px solid hsl(var(--sidebar-background)); /* Creates a small border around the thumb */
+}
+[data-sidebar="sidebar"] [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+  /* Use a slightly different color for hover, perhaps related to sidebar-primary or a lighter version of accent */
+  background: hsl(var(--sidebar-accent-foreground)); /* Example: green text color as thumb hover */
+}
+
+/* For Firefox */
+[data-sidebar="sidebar"] [data-sidebar="content"] {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--sidebar-accent)) hsl(var(--sidebar-background));
+}
